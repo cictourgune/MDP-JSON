@@ -1,0 +1,23 @@
+<project name="MDP-Json" default="deploy" basedir=".">
+	<description>MDP-Json</description>
+	
+	<property name="library" value="true" />
+	<property name="library-name" value="json-mdp.jar" />
+	<property name="project" value="MDP-Crawler" />
+	
+	<!-- Directory layout -->
+	<property name="src-dir" location="src" />
+	<property name="obj-dir" location="obj" />
+	<property name="deploy-dir" location="deploy" />
+	
+	<target name="init" description="Initial setup">
+		<mkdir dir="${obj-dir}" />
+		<mkdir dir="${deploy-dir}" />
+	</target>
+	
+	<target name="deploy" depends="init">
+		<javac srcdir="${src-dir}" destdir="${obj-dir}" target="1.7" />
+		<jar destfile="${deploy-dir}/${library-name}" basedir="${obj-dir}" includes="**/*.class" />
+		<delete dir="${obj-dir}" />
+	</target>
+</project>
